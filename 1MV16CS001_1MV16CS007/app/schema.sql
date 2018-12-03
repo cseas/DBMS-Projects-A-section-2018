@@ -21,7 +21,7 @@ create table teacher(
 	l_name varchar(10),
 	teacher_id varchar(10),
 	Primary key(teacher_id),
-	foreign key(dept_name)references dept(dept_name)
+	Constraint fk_id1 foreign key(dept_name)references dept(dept_name)
 	);
 
 BEGIN
@@ -43,8 +43,8 @@ create table section (
 	course_id varchar(10),
 	timeslot_id varchar(10),
 	primary key(course_id, section_id, sem, academic_year),
-	foreign key(course_id) references course_info(course_id),
-	foreign key(building,room_no) references classroom(building,room_no)
+	Constraint fk_id2 foreign key(course_id) references course_info(course_id),
+	Constraint fk_id3 foreign key(building,room_no) references classroom(building,room_no)
 	);
 
 BEGIN
@@ -64,8 +64,8 @@ create table teacher_course(
 	academic_year number(4),
 	teacher_id varchar(10),
 	primary key (course_id,section_id,sem,academic_year,teacher_id),
-	foreign key (teacher_id) references teacher(teacher_id),
-	foreign key(course_id,section_id,sem,academic_year) references section(course_id, section_id, sem, academic_year)
+	Constraint fk_id4 foreign key (teacher_id) references teacher(teacher_id),
+	Constraint fk_id5 foreign key(course_id,section_id,sem,academic_year) references section(course_id, section_id, sem, academic_year)
 	);
 
 BEGIN
@@ -122,7 +122,7 @@ create table course_info (
 	no_of_hours number(2),
 	credits varchar(10),
 	primary key (course_id),
-	foreign key(dept_name) references dept(dept_name)
+	Constraint fk_id6 foreign key(dept_name) references dept(dept_name)
 	);
 
 BEGIN
@@ -156,7 +156,7 @@ create table student (
 	stud_name varchar(10),
 	dept_name varchar(10),
 	primary key(stud_id),
-	foreign key(dept_name) references dept(dept_name)
+	Constraint fk_id7 foreign key(dept_name) references dept(dept_name)
 	);
 
 BEGIN
@@ -177,8 +177,8 @@ create table student_course (
 	sem number(1),
 	grade varchar(2),
 	primary key(stud_id,course_id,section_id,sem,academic_year),
-	foreign key(course_id,section_id,sem,academic_year) references section(course_id,section_id,sem,academic_year),
-	foreign key(stud_id) references student(stud_id)
+	Constraint fk_id8 foreign key(course_id,section_id,sem,academic_year) references section(course_id,section_id,sem,academic_year),
+	Constraint fk_id9 foreign key(stud_id) references student(stud_id)
 	);
 
 BEGIN
@@ -195,6 +195,39 @@ create table local_guardian (
 	teacher_id varchar(10),
 	stud_id varchar(10),
 	primary key(stud_id),
-	foreign key(stud_id) references student (stud_id),
-	foreign key(teacher_id) references teacher(teacher_id)
+	Constraint fk_id10 foreign key(stud_id) references student (stud_id),
+	Constraint fk_id11 foreign key(teacher_id) references teacher(teacher_id)
 	);
+
+  BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE local_guardian';
+  EXCEPTION
+    WHEN OTHERS THEN
+      IF SQLCODE <> -942 THEN
+        RAISE;
+      END IF;
+  END;
+  /
+
+  create table facultyloginTable(
+  FACULTY_ID varchar(20),
+  FACULTY_TYPE VARCHAR(10),
+  password varchar(20),
+  Constraint fk_fac_id foreign key(FACULTY_ID) REFERENCES teacher(teacher_id) on delete cascade
+  );
+
+  BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE local_guardian';
+  EXCEPTION
+    WHEN OTHERS THEN
+      IF SQLCODE <> -942 THEN
+        RAISE;
+      END IF;
+  END;
+  /
+
+  create table studentloginTable(
+  USER_ID varchar(20),
+  password varchar(20),
+  Constraint fk_stud_id foreign key(USER_ID) REFERENCES student(stud_id) on delete cascade
+  );
