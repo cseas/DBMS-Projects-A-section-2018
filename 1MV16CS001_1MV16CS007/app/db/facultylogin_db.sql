@@ -1,10 +1,3 @@
-create table facultyloginTable(
-FACULTY_ID varchar(20),
-FACULTY_TYPE VARCHAR(10),
-password varchar(20),
-Constraint fk_user_id foreign key(FACULTY_ID) REFERENCES teacher(teacher_id) on delete cascade
-);
-
 INSERT into facultyloginTable(Faculty_id,User_type,password)
 Values("teacher","Teacher","TEACHER123");
 
