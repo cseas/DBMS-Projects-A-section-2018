@@ -228,8 +228,8 @@ END;
 /
 
 create table student_login (
-  USER_ID varchar(20),
+  student_id varchar(20),
   student_pass varchar(20),
-  Constraint fk_stud_id foreign key(USER_ID) 
+  Constraint fk_stud_id foreign key(student_id) 
     REFERENCES student(stud_id) on delete cascade
 );
