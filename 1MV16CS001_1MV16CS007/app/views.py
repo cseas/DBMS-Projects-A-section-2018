@@ -22,9 +22,17 @@ def signin_staff():
 def signin_admin():
     return render_template('signin_admin.html')
 
-@app.route('/student_home')
+@app.route('/student_home', methods=['POST'])
 def student_home():
-    return render_template('student_home.html')
+    import db
+    stud_id = request.form['studId']
+    stud_pass = request.form['studPass']
+    authenticated = db.verifyLogin(stud_id, stud_pass)
+
+    if authenticated:
+        return render_template('student_home.html')
+    else:
+        # return invalid signin page
 
 @app.route('/admin_home')
 def admin_home():
