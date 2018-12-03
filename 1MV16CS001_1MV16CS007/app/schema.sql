@@ -197,37 +197,39 @@ create table local_guardian (
 	primary key(stud_id),
 	Constraint fk_id10 foreign key(stud_id) references student (stud_id),
 	Constraint fk_id11 foreign key(teacher_id) references teacher(teacher_id)
-	);
+);
 
-  BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE local_guardian';
-  EXCEPTION
-    WHEN OTHERS THEN
-      IF SQLCODE <> -942 THEN
-        RAISE;
-      END IF;
-  END;
-  /
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE faculty_login';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE <> -942 THEN
+      RAISE;
+    END IF;
+END;
+/
 
-  create table facultyloginTable(
+create table faculty_login (
   FACULTY_ID varchar(20),
   FACULTY_TYPE VARCHAR(10),
-  password varchar(20),
-  Constraint fk_fac_id foreign key(FACULTY_ID) REFERENCES teacher(teacher_id) on delete cascade
-  );
+  faculty_pass varchar(20),
+  Constraint fk_fac_id foreign key(FACULTY_ID)
+    REFERENCES teacher(teacher_id) on delete cascade
+);
 
-  BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE local_guardian';
-  EXCEPTION
-    WHEN OTHERS THEN
-      IF SQLCODE <> -942 THEN
-        RAISE;
-      END IF;
-  END;
-  /
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE student_login';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE <> -942 THEN
+      RAISE;
+    END IF;
+END;
+/
 
-  create table studentloginTable(
+create table student_login (
   USER_ID varchar(20),
-  password varchar(20),
-  Constraint fk_stud_id foreign key(USER_ID) REFERENCES student(stud_id) on delete cascade
-  );
+  student_pass varchar(20),
+  Constraint fk_stud_id foreign key(USER_ID) 
+    REFERENCES student(stud_id) on delete cascade
+);
