@@ -58,3 +58,8 @@ sudo pip3 install requirements.txt
 
 ---
 ## Usage
+
+Run using:
+```sh
+./start.sh
+```

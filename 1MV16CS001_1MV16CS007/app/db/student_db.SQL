@@ -1,7 +1,6 @@
 Insert into table student(stud_id,stud_name,dept_name)
 Values("1MV16CS001","ABHIJEET","CS");
 
-
 Insert into table student(stud_id,stud_name,dept_name)
 Values("student","ABHIJNA","CS");
 
@@ -25,4 +24,3 @@ Values("1MV16CS008","AISHVARAYA","CS");
 
 Insert into table student(stud_id,stud_name,dept_name)
 Values("1MV16CS009","AKSHAY","CS");
-
