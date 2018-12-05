@@ -42,7 +42,19 @@ def verifyLogin(id, password, type='student'):
         print(output)
         print(error)
 
-if __name__ == "__main__":
+def buildSchema():
+    output, error = runSqlQuery("@schema.sql".encode('utf-8'), connstr)
+    print("\nOutput:\n", output.decode('utf-8'))
+
+    if error == b'':
+        print("No errors")
+    else:
+        print("\nError:\n", error.decode('utf-8'))
+
+def populateDb():
+    print("")
+
+if __name__ == '__main__':
     con = cx_Oracle.connect('student/student@//localhost:1521/xe')
     # print(con.version)
     cur = con.cursor()
@@ -58,3 +70,5 @@ if __name__ == "__main__":
     #     print(i)
 
     con.close()
+
+    buildSchema()
