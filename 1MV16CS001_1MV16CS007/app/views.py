@@ -22,7 +22,7 @@ def signin_staff():
 def signin_admin():
     return render_template('signin_admin.html')
 
-@app.route('/student_home', methods=['POST'])
+@app.route('/student_home', methods=['GET', 'POST'])
 def student_home():
     import db
     stud_id = request.form['studId']
@@ -32,7 +32,7 @@ def student_home():
     if authenticated:
         return render_template('student_home.html')
     else:
-        # return invalid signin page
+        return render_template('invalid_signin_student.html')
 
 @app.route('/admin_home')
 def admin_home():

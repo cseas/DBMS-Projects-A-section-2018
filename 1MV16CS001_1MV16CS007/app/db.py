@@ -32,15 +32,15 @@ connstr = 'student/student@//localhost:1521/xe'
 '''
 
 # Function to verify login
-def verifyLogin(id, password, type='student'):
+def verifyLogin(stud_id, password, type='student'):
     if type == "student":
-
-        query = "SELECT * FROM STUDENT_LOGIN WHERE STUDENT_ID = " + id + " AND STUDENT_PASS = " + password
-
-        output, error = runSqlQuery(query, connstr);
-
-        print(output)
-        print(error)
+        query = "SELECT * FROM STUDENT_LOGIN WHERE STUDENT_EMAIL = " + stud_id + " AND STUDENT_PASS = " + password
+        output, error = runSqlQuery(query.encode('utf-8'), connstr);
+        print("\nOutput:\n", output.decode('utf-8'))
+        if output == b'':
+            return False
+        else:
+            return True
 
 def buildSchema():
     output, error = runSqlQuery("@schema.sql".encode('utf-8'), connstr)
