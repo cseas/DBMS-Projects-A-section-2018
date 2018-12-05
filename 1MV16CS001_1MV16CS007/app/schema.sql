@@ -44,9 +44,9 @@ create table section (
 	course_id varchar(10),
 	timeslot_id varchar(10),
 	primary key(course_id, section_id, sem, academic_year),
-	Constraint fk_id2 foreign key(course_id) 
+	Constraint fk_id2 foreign key(course_id)
 		references course_info(course_id) on delete cascade,
-	Constraint fk_id3 foreign key(building,room_no) 
+	Constraint fk_id3 foreign key(building,room_no)
 		references classroom(building,room_no) ON DELETE CASCADE
 	);
 
@@ -67,9 +67,9 @@ create table teacher_course(
 	academic_year number(4),
 	teacher_id varchar(10),
 	primary key (course_id,section_id,sem,academic_year,teacher_id),
-	Constraint fk_id4 foreign key (teacher_id) 
+	Constraint fk_id4 foreign key (teacher_id)
 		references teacher(teacher_id) ON DELETE CASCADE,
-	Constraint fk_id5 foreign key(course_id,section_id,sem,academic_year) 
+	Constraint fk_id5 foreign key(course_id,section_id,sem,academic_year)
 		references section(course_id, section_id, sem, academic_year) ON DELETE CASCADE
 	);
 
@@ -127,7 +127,7 @@ create table course_info (
 	no_of_hours number(2),
 	credits NUMBER(2),
 	primary key (course_id),
-	Constraint fk_id6 foreign key(dept_name) 
+	Constraint fk_id6 foreign key(dept_name)
 		references dept(dept_name) ON DELETE CASCADE
 	);
 
@@ -182,9 +182,9 @@ create table student_course (
 	sem number(1),
 	grade varchar(2),
 	primary key(stud_id,course_id,section_id,sem,academic_year),
-	Constraint fk_id8 foreign key(course_id,section_id,sem,academic_year) 
+	Constraint fk_id8 foreign key(course_id,section_id,sem,academic_year)
 		references section(course_id,section_id,sem,academic_year) ON DELETE CASCADE,
-	Constraint fk_id9 foreign key(stud_id) 
+	Constraint fk_id9 foreign key(stud_id)
 		references student(stud_id) ON DELETE CASCADE
 	);
 
@@ -202,9 +202,9 @@ create table local_guardian (
 	teacher_id varchar(10),
 	stud_id varchar(10),
 	primary key(stud_id),
-	Constraint fk_id10 foreign key(stud_id) 
+	Constraint fk_id10 foreign key(stud_id)
 		references student (stud_id) ON DELETE CASCADE,
-	Constraint fk_id11 foreign key(teacher_id) 
+	Constraint fk_id11 foreign key(teacher_id)
 		references teacher(teacher_id) ON DELETE CASCADE
 );
 
@@ -237,8 +237,8 @@ END;
 /
 
 create table student_login (
-  student_id varchar(20),
   student_pass varchar(20),
-  Constraint fk_student_id foreign key(student_id) 
+  student_email varchar(30),
+  Constraint fk_student_pass foreign key(student_pass)
     REFERENCES student(stud_id) on delete cascade
 );
