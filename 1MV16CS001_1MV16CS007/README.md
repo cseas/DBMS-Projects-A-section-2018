@@ -2,6 +2,15 @@
 DBMS Mini project for 5th Semester under VTU based on A Heuristic approach to Automated College Schedule Generation using Genetic Algorithms.
 
 ---
+## Index
+- [Developers](#developers)
+- [Install Requirements](#install-requirements)
+- [Project structure](#project-structure)
+- [Software information](#software-information)
+- [Hardware information](#hardware-information)
+- [Usage](#usage)
+
+---
 ## Developers
 - [Abhijeet Singh](https://github.com/cseas) (1MV16CS001)
 - [Aditya Narayan](https://github.com/NarayanAdi08) (1MV16CS007)
@@ -46,3 +55,11 @@ sudo pip3 install requirements.txt
 **Graphics:** Intel® HD Graphics 520 (Skylake GT2)  
 **Hard Disk:** 211.5 GB  
 **Monitor:** 15'' Colour Monitor  
+
+---
+## Usage
+
+Run using:
+```sh
+./start.sh
+```
