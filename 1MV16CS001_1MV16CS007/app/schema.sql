@@ -91,7 +91,7 @@ create table timeslot(
 	end_hour number(2),
 	end_min number(2),
 	primary key(timeslot_id, week_day, start_hour, start_min)
-	);
+);
 
 BEGIN
   EXECUTE IMMEDIATE 'DROP TABLE classroom cascade constraints';
@@ -125,7 +125,7 @@ create table course_info (
 	dept_name varchar(10),
 	title varchar(10),
 	no_of_hours number(2),
-	credits varchar(10),
+	credits NUMBER(2),
 	primary key (course_id),
 	Constraint fk_id6 foreign key(dept_name) 
 		references dept(dept_name) ON DELETE CASCADE
@@ -145,7 +145,7 @@ create table dept (
 	dept_name varchar(10),
 	building number(2),
 	primary key(dept_name)
-	);
+);
 
 BEGIN
   EXECUTE IMMEDIATE 'DROP TABLE student cascade constraints';
@@ -159,12 +159,10 @@ END;
 
 create table student (
 	stud_id varchar(10),
-	stud_name varchar(10),
+	stud_name varchar(30),
 	dept_name varchar(10),
-	primary key(stud_id),
-	Constraint fk_dept_name foreign key(dept_name) 
-		references dept(dept_name) ON DELETE CASCADE
-	);
+	primary key(stud_id)
+);
 
 BEGIN
   EXECUTE IMMEDIATE 'DROP TABLE student_course';

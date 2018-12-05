@@ -1,12 +1,12 @@
 Insert into dept(dept_name,building)
-values(“cse”,1);
+values('cse',1);
 Insert into dept(dept_name,building)
-values(“ece”,1);
+values('ece',1);
 Insert into dept(dept_name,building)
-values(“Tce”,1);
+values('Tce',1);
 Insert into dept(dept_name,building)
-values(“eee”,2);
+values('eee',2);
 Insert into dept(dept_name,building)
-values(“civil”,2);
+values('ISE',2);
 Insert into dept(dept_name,building)
-values(“mech”,3);
+values('ME',3);

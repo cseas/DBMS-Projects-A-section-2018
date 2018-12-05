@@ -46,18 +46,12 @@ def buildSchema():
     output, error = runSqlQuery("@schema.sql".encode('utf-8'), connstr)
     print("\nOutput:\n", output.decode('utf-8'))
 
-    if error == b'':
-        print("No errors")
-    else:
-        print("\nError:\n", error.decode('utf-8'))
-
-def populateDb():
-    output, error = runSqlQuery("@student_db.sql".encode('utf-8'), connstr)
-    print("\nOutput:\n", output.decode('utf-8'))
     if error != b'':
         print("\nError:\n", error.decode('utf-8'))
 
-    output, error = runSqlQuery("@student_login_db.sql".encode('utf-8'), connstr)
+def populateDb(sql_file):
+    print("Populating table: " + sql_file)
+    output, error = runSqlQuery(sql_file.encode('utf-8'), connstr)
     print("\nOutput:\n", output.decode('utf-8'))
     if error != b'':
         print("\nError:\n", error.decode('utf-8'))
@@ -80,4 +74,7 @@ if __name__ == '__main__':
     con.close()
 
     buildSchema()
-    populateDb()
+
+    populateDb("@dept_db.sql")
+    populateDb("@student_db.sql")
+    populateDb("@student_login_db.sql")
