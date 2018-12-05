@@ -156,7 +156,7 @@ create table student (
 	stud_name varchar(10),
 	dept_name varchar(10),
 	primary key(stud_id),
-	Constraint fk_id7 foreign key(dept_name) references dept(dept_name)
+	Constraint fk_dept_name foreign key(dept_name) references dept(dept_name)
 	);
 
 BEGIN
@@ -230,6 +230,6 @@ END;
 create table student_login (
   student_id varchar(20),
   student_pass varchar(20),
-  Constraint fk_stud_id foreign key(student_id) 
+  Constraint fk_student_id foreign key(student_id) 
     REFERENCES student(stud_id) on delete cascade
 );

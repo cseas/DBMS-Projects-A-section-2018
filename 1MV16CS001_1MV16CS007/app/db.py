@@ -52,7 +52,15 @@ def buildSchema():
         print("\nError:\n", error.decode('utf-8'))
 
 def populateDb():
-    print("")
+    output, error = runSqlQuery("@student_db.sql".encode('utf-8'), connstr)
+    print("\nOutput:\n", output.decode('utf-8'))
+    if error != b'':
+        print("\nError:\n", error.decode('utf-8'))
+
+    output, error = runSqlQuery("@student_login_db.sql".encode('utf-8'), connstr)
+    print("\nOutput:\n", output.decode('utf-8'))
+    if error != b'':
+        print("\nError:\n", error.decode('utf-8'))
 
 if __name__ == '__main__':
     con = cx_Oracle.connect('student/student@//localhost:1521/xe')
@@ -72,3 +80,4 @@ if __name__ == '__main__':
     con.close()
 
     buildSchema()
+    populateDb()
