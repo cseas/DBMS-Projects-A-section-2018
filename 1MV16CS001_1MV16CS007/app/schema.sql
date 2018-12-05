@@ -156,7 +156,7 @@ create table student (
 	stud_name varchar(10),
 	dept_name varchar(10),
 	primary key(stud_id),
-	Constraint fk_id7 foreign key(dept_name) references dept(dept_name)
+	Constraint fk_id7 foreign key(dept_name) references dept(dept_name) on delete cas
 	);
 
 BEGIN
