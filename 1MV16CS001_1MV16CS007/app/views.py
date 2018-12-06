@@ -10,7 +10,7 @@ from app import app
 def index():
     return render_template('index.html')
 
-@app.route('/signin_student')
+@app.route('/signin_student', methods=['GET', 'POST'])
 def signin_student():
     return render_template('signin_student.html')
 
@@ -22,17 +22,17 @@ def signin_staff():
 def signin_admin():
     return render_template('signin_admin.html')
 
-@app.route('/student_home', methods=['GET', 'POST'])
+@app.route('/student_home', methods=['POST'])
 def student_home():
-    import db
-    stud_id = request.form['studId']
+    # import dbfunc
+    stud_id = request.form['studEmail']
     stud_pass = request.form['studPass']
-    authenticated = db.verifyLogin(stud_id, stud_pass)
+    # authenticated = dbfunc.verifyLogin(stud_id, stud_pass)
 
-    if authenticated:
-        return render_template('student_home.html')
+    if stud_pass == "1MV16CS002":
+        return render_template('invalid_signin_student.html', name="")
     else:
-        return render_template('invalid_signin_student.html')
+        return render_template('student_home.html', name="")
 
 @app.route('/admin_home')
 def admin_home():
@@ -62,3 +62,19 @@ def search():
         return render_template('search_error.html', name=search_name)
     else:
         return render_template('search.html', name=search_name)
+
+@app.route('/updated', methods=['POST'])
+def updated():
+    # stud_id = request.form['entry_id']
+    # stud_name = request.form['entry_name']
+    # stud_dept = request.form['entry_dept']
+    # if stud_id == "1MV16CS001":
+    #     return render_template('invalid_create.html', name="")
+    # else:
+    #     import cx_Oracle
+    #     con = cx_Oracle.connect('student/student@//localhost:1521/xe')
+    #     cur = con.cursor()
+    #     query = "insert into student values ('" + stud_id + "', '" + stud_name + "', '" + stud_dept + "')"
+    #     cur.execute(query)
+    #     con.close()
+    return render_template('updated.html', name="")

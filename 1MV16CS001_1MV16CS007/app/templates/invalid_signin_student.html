@@ -17,9 +17,6 @@
   </head>
 
   <body>
-    <p>
-        <code>Invalid credentials!</code>
-    </p>
     <form 
       class="form-signin" 
       action="{{ url_for('student_home') }}">
@@ -32,6 +29,10 @@
           Click <a href="{{ url_for('index') }}">here</a> to go back if you're not a student.
         </p>
       </div>
+      
+      <p>
+          <code>Invalid credentials!</code>
+      </p>
 
       <div class="form-label-group">
         <input 
@@ -40,8 +41,7 @@
           class="form-control" 
           placeholder="Email address" 
           required="" 
-          autofocus=""
-          name="studId">
+          autofocus="">
 
         <label for="inputEmail">Email address</label>
       </div>
@@ -52,8 +52,7 @@
           id="inputPassword" 
           class="form-control" 
           placeholder="Password" 
-          required=""
-          name="studPass">
+          required="">
         
         <label for="inputPassword">Password</label>
       </div>
